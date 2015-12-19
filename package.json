@@ -4,11 +4,13 @@
   "description": "Experiment with elasticsearch percolators",
   "main": "createQueries.js",
   "scripts": {
-    "run": "node ./run.js"
+    "registerQueries": "node ./src/registerQueries/runRegisterQueries.js",
+    "percolatorServer": "node ./src/randomPercolatorServer/index.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "elasticsearch": "^10.0.1"
+    "elasticsearch": "^10.0.1",
+    "express": "^4.13.3"
   }
 }
