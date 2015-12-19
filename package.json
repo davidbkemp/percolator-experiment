@@ -1,0 +1,14 @@
+{
+  "name": "percolatorExperiment",
+  "version": "1.0.0",
+  "description": "Experiment with elasticsearch percolators",
+  "main": "createQueries.js",
+  "scripts": {
+    "run": "node ./run.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "elasticsearch": "^10.0.1"
+  }
+}

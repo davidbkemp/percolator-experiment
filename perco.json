@@ -1,0 +1,25 @@
+{
+  "settings": {
+    "number_of_replicas": 0,
+    "number_of_shards": 1
+  },
+  "mappings": {
+    "listing": {
+      "properties": {
+        "title": {"type": "string", "analyzer": "english"},
+        "description": {"type": "string", "analyzer": "english"}
+      }
+    },
+
+    ".percolator": {
+        "properties": {
+          "query": {"type": "object", "enabled": false},
+          "suburb": {"type": "string", "index": "not_analyzed"},
+          "minBathrooms": {"type": "integer"},
+          "maxBathrooms": {"type": "integer"},
+          "minBedrooms": {"type": "integer"},
+          "maxBedrooms": {"type": "integer"}
+         }
+      }
+  }
+}
