@@ -1,3 +1,5 @@
+var randomItems = require('../randomItems.js');
+
 var batchSize = 10;
 
 function randomlyPercolate(esClient) {
@@ -20,26 +22,12 @@ function createPercolationBatch() {
     return batch;
 }
 
-var phrases = [
-    "gas cooking",
-    "investment",
-    "siwmming pool",
-    "electric cooking",
-    "gas heating",
-    "electric heating",
-    "garage",
-    "garden",
-    "air conditioning",
-    "multi-story"
-];
-
-
 function randomPercolation() {
-    var suburb = randomSuburb();
-    var title = randomPhrase();
-    var description = randomPhrase() + " " + randomPhrase();
-    var bathRooms = getRandomInt(0, 6);
-    var bedRooms = getRandomInt(0, 6);
+    var suburb = randomItems.randomSuburb();
+    var title = randomItems.randomPhrase();
+    var description = randomItems.randomPhrase() + " " + randomItems.randomPhrase();
+    var bathRooms = randomItems.getRandomInt(0, 6);
+    var bedRooms = randomItems.getRandomInt(0, 6);
     return {
       "doc": {
         "title": title,
@@ -48,10 +36,10 @@ function randomPercolation() {
       "filter": {
         "bool": {
            "must_not": [
-            {"range": {"minBathrooms": {"gt": bathRooms}}},
-            {"range": {"maxBathrooms": {"lt": bathRooms}}},
-            {"range": {"minBedrooms": {"gt": bedRooms}}},
-            {"range": {"maxBedrooms": {"lt": bedRooms}}}
+            {"range": {"minBathRooms": {"gt": bathRooms}}},
+            {"range": {"maxBathRooms": {"lt": bathRooms}}},
+            {"range": {"minBedRooms": {"gt": bedRooms}}},
+            {"range": {"maxBedRooms": {"lt": bedRooms}}}
             ],
          "filter": {
            "bool":{
@@ -64,20 +52,6 @@ function randomPercolation() {
     }
 }
 
-
-function randomPhrase() {
-    return phrases[getRandomInt(0, phrases.length - 1)];
-}
-
-
-function randomSuburb() {
-    return "suburb" + getRandomInt(1, 16000);
-}
-
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
 
 
 module.exports = {

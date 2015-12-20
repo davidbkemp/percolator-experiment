@@ -17,8 +17,13 @@ app.get('/', function (req, res) {
 });
 
 function handlePercolationResponse(data, req, res) {
-    console.log(JSON.stringify(data));
-    res.send('OK');
+
+    function addResponseHitsToTotal(total, response) {
+        return total + response.total;
+    }
+
+    var matchCount = data.responses.reduce(addResponseHitsToTotal, 0);
+    res.send('Match count: ' + matchCount);
 }
 
 var server = app.listen(3000, function () {
