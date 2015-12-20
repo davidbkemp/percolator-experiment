@@ -19,7 +19,7 @@ function randomPhrase() {
 }
 
 function randomSuburb() {
-    return "suburb" + getRandomInt(1, 10);
+    return "suburb" + getRandomInt(1, 10000);
 }
 
 
