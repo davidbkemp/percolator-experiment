@@ -4,8 +4,12 @@ var elasticsearch = require('elasticsearch');
 
 var client = new elasticsearch.Client({ host: 'localhost:9200' });
 
-registerQueries(client, 1000000, 200).then(function() {
+var ensureIndex = require("./ensureIndex").ensureIndex(client);
+
+ensureIndex
+  .then(function() {return registerQueries(client, 1000, 200)})
+  .then(function() {
     console.log("done");
-}, function(err) {
+  }, function(err) {
     console.log("Oh Noes..", err);
-});
+  });
