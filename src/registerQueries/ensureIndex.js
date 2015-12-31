@@ -10,9 +10,21 @@ function ensureIndex(client) {
     }
   }
 
+  function indexSettings() {
+    return {
+      index: "perco",
+      body: {
+        settings: {
+          "number_of_shards": 1,
+          "number_of_replicas": 0
+        }
+      }
+    };
+  }
+
   function createIndex() {
     console.log("creating index");
-    return client.indices.create({index: "perco"})
+    return client.indices.create(indexSettings())
       .then(waitForGreen);
   }
 
