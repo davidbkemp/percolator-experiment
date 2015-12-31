@@ -7,23 +7,25 @@ Uses entirely randomly generated synthetic data.
 ## Prerequisites
 
 - Elasticsearch 2.x
-- Node 5.x
+- Node 4.x
 
 ## Usage
 
 - Make sure you give ELasticsearch at least 4G of heap (the percolators are all kept in memory).
-- Manually create an index called "perco" using perco.json (TODO: automate this).
-- `npm run-script registerQueries` (registers 1 million queries and can take several minutes to run).
+- `npm run-script registerQueries` (registers queries and can take several minutes to run).
 - `npm run-script percolatorServer` (starts a little web server)
 - Point your browser at http://localhost:3000
 
 The percolator-server submits a batch of 10 randomly generated percolator queries
 and responds with the total matches for the 10 queries.
-With the current 1 million registered queries, you should typically get about 5000 matches.
+With 1 million registered queries, you should typically get about 5000 matches.
 i.e. 500 matches per query.
 
-On my ancient mac-mini, after a few warm-up requests, I am getting response times under 500ms.
-This is for batches of 10 queries, and so I am getting under 50ms per query.
+On my ancient mac-mini, after a few warm-up requests,
+I am getting response times under 500ms for
+batches of 10 percolator queries against
+1 million registered queries.
+And so I am getting under 50ms per query.
 
 ## More notes
 
