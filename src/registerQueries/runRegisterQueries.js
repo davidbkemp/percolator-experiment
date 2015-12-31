@@ -7,7 +7,8 @@ var client = new elasticsearch.Client({ host: 'localhost:9200' });
 var ensureIndex = require("./ensureIndex").ensureIndex(client);
 
 ensureIndex
-  .then(function() {return registerQueries(client, 1000, 200)})
+  .then(function() {return registerQueries(client, 10000, 200);})
+  .then(function() {return client.indices.optimize({index: 'perco'});})
   .then(function() {
     console.log("done");
   }, function(err) {
