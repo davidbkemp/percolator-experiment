@@ -1,6 +1,6 @@
 var q = require('q');
 var fs = require('fs');
-var readFile = q.nfBind(fs.readFile);
+var readFile = q.nfbind(fs.readFile);
 
 function ensureIndex(client) {
   function deleteIfTrue(exists) {
@@ -15,7 +15,7 @@ function ensureIndex(client) {
   }
 
   function readSettings() {
-    return readFile('file', 'utf-8');
+    return readFile(__dirname + '/perco.json', 'utf-8');
   }
 
   function createIndexWithSettings(body) {
@@ -27,8 +27,8 @@ function ensureIndex(client) {
 
   function createIndex() {
     console.log("creating index");
-    return readSettings().
-      then(createIndexWithSettings)
+    return readSettings()
+      .then(createIndexWithSettings)
       .then(waitForGreenIndex);
   }
 

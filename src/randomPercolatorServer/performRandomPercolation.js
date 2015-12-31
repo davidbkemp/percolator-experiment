@@ -26,8 +26,8 @@ function randomPercolation() {
     var suburb = randomItems.randomSuburb();
     var title = randomItems.randomPhrase();
     var description = randomItems.randomPhrase() + " " + randomItems.randomPhrase();
-    var bathRooms = randomItems.getRandomInt(0, 6);
-    var bedRooms = randomItems.getRandomInt(0, 6);
+    var bathrooms = randomItems.getRandomInt(0, 6);
+    var bedrooms = randomItems.getRandomInt(0, 6);
     return {
       "doc": {
         "title": title,
@@ -36,10 +36,10 @@ function randomPercolation() {
       "filter": {
         "bool": {
            "must_not": [
-            {"range": {"minBathRooms": {"gt": bathRooms}}},
-            {"range": {"maxBathRooms": {"lt": bathRooms}}},
-            {"range": {"minBedRooms": {"gt": bedRooms}}},
-            {"range": {"maxBedRooms": {"lt": bedRooms}}}
+            {"range": {"minBathrooms": {"gt": bathrooms}}},
+            {"range": {"maxBathrooms": {"lt": bathrooms}}},
+            {"range": {"minBedrooms": {"gt": bedrooms}}},
+            {"range": {"maxBedrooms": {"lt": bedrooms}}}
             ],
          "filter": {
            "bool":{

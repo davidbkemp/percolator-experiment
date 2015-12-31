@@ -44,9 +44,9 @@ A typical registered query for a saved search looks like this:
                   "suburb1478",
                   "suburb2196"
                ],
-               "minBathRooms": 2,
-               "minBedRooms": 2,
-               "maxBedRooms": 3,
+               "minBathrooms": 2,
+               "minBedrooms": 2,
+               "maxBedrooms": 3,
                "query": {
                   "bool": {
                      "must": [
@@ -88,10 +88,10 @@ looks like this:
     "filter": {
       "bool": {
         "must_not": [
-          { "range": { "minBathRooms": { "gt": 1}}},
-          { "range": { "maxBathRooms": { "lt": 1}}},
-          { "range": { "minBedRooms": { "gt": 2}}},
-          { "range": { "maxBedRooms": { "lt": 2}}}
+          { "range": { "minBathrooms": { "gt": 1}}},
+          { "range": { "maxBathrooms": { "lt": 1}}},
+          { "range": { "minBedrooms": { "gt": 2}}},
+          { "range": { "maxBedrooms": { "lt": 2}}}
         ],
         "filter": {
           "bool": {

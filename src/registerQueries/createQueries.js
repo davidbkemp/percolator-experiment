@@ -3,8 +3,8 @@ var randomItems = require('../randomItems.js');
 function createQuery() {
     var query = {};
     addSuburbs(query);
-    addFieldRange(query, "BathRooms");
-    addFieldRange(query, "BedRooms");
+    addFieldRange(query, "Bathrooms");
+    addFieldRange(query, "Bedrooms");
     addKeywordsQuery(query);
     return query;
 }
