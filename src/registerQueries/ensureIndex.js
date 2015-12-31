@@ -1,3 +1,7 @@
+var q = require('q');
+var fs = require('fs');
+var readFile = q.nfBind(fs.readFile);
+
 function ensureIndex(client) {
   function deleteIfTrue(exists) {
     if (exists) {
@@ -10,26 +14,30 @@ function ensureIndex(client) {
     }
   }
 
-  function indexSettings() {
-    return {
+  function readSettings() {
+    return readFile('file', 'utf-8');
+  }
+
+  function createIndexWithSettings(body) {
+    return client.indices.create({
       index: "perco",
-      body: {
-        settings: {
-          "number_of_shards": 1,
-          "number_of_replicas": 0
-        }
-      }
-    };
+      body: body
+    });
   }
 
   function createIndex() {
     console.log("creating index");
-    return client.indices.create(indexSettings())
-      .then(waitForGreen);
+    return readSettings().
+      then(createIndexWithSettings)
+      .then(waitForGreenIndex);
   }
 
   function waitForGreen() {
     return client.cluster.health({waitForStatus: "green"});
+  }
+
+  function waitForGreenIndex() {
+    return client.cluster.health({index: "perco", waitForStatus: "green"});
   }
 
   return client.indices.exists({index: "perco"})
