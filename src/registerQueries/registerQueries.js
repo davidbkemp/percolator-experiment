@@ -1,14 +1,15 @@
 var createQuery = require("./createQueries").createQuery;
 
-function registerQueries(esClient, numQueries, batchSize) {
+function registerQueries(esClient, numQueries) {
 
-    function run(seq) {
+    var seq = 0;
+    var batchSize = 200;
+
+    function run() {
         var batchPromise = registerQuery(seq, createBatch(seq));
         seq = seq + batchSize;
         if (seq >= numQueries) return batchPromise;
-        return batchPromise.then(function () {
-            return run(seq);
-        });
+        return batchPromise.then(run);
     }
 
     function createBatch(offset) {
@@ -17,7 +18,6 @@ function registerQueries(esClient, numQueries, batchSize) {
             var id = "saved-search-" + (i + offset);
             batch.push({ index:  { _id: id } });
             batch.push(createQuery());
-
         }
         return batch;
     }
@@ -31,7 +31,7 @@ function registerQueries(esClient, numQueries, batchSize) {
     }
 
 
-    return run(0);
+    return run();
 }
 
 
