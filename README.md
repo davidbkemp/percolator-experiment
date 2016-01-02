@@ -12,7 +12,7 @@ Uses entirely randomly generated synthetic data.
 ## Usage
 
 - Make sure you give ELasticsearch at least 4G of heap (the percolators are all kept in memory).
-- `npm run-script registerQueries` (registers queries and can take several minutes to run).
+- `npm run-script registerQueries -- -n 1000000` (registers 1000000 queries and can take several minutes to run).
 - `npm run-script percolatorServer` (starts a little web server)
 - Point your browser at http://localhost:3000
 

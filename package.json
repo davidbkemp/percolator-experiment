@@ -2,7 +2,7 @@
   "name": "percolatorExperiment",
   "version": "1.0.0",
   "description": "Experiment with elasticsearch percolators",
-  "main": "createQueries.js",
+  "repository": "https://github.com/davidbkemp/percolator-experiment",
   "scripts": {
     "registerQueries": "node ./src/registerQueries/runRegisterQueries.js",
     "percolatorServer": "node ./src/randomPercolatorServer/index.js"
@@ -10,6 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "command-line-args": "^2.1.4",
     "elasticsearch": "^10.0.1",
     "express": "^4.13.3",
     "q": "^1.4.1"
